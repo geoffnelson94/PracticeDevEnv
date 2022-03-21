@@ -9,7 +9,7 @@ on:
 jobs:
   Windows:
     name: build-windows
-    runs-on: [self-hosted, windows]
+    runs-on: [ubuntu-latest]
 
     steps:
     - name: Checkout

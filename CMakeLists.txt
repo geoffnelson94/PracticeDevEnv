@@ -11,6 +11,8 @@ FetchContent_Declare(
   URL https://github.com/google/googletest/archive/e2239ee6043f73722e7aa812a459f54a28552929.zip
 )
 
+add_subdirectory(${CMAKE_BINARY_DIR}/googletest)
+
 add_executable(main src/main.cpp)
 
 install(TARGETS main)

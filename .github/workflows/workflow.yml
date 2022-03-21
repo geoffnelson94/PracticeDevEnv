@@ -24,8 +24,8 @@ jobs:
 
     - name: Running cmake (windows)
     - run: 
-        cd ${{ github.workspace }}
-        mkdir build
-        cd build
-        cmake ..
+          cd ${{ github.workspace }}
+          mkdir build
+          cd build
+          cmake ..
       

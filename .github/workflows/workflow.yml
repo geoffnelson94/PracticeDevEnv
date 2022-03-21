@@ -4,23 +4,28 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: "Windows Latest GCC"
+    runs-on: "windows-latest"
     steps:
-    - uses: actions/checkout@v2
-    # install dependencies
-    - name: boost
-      run: sudo apt-get update && sudo apt-get install -yq libboost1.65-dev
-    # build project
-    - name: mkdir
-      run: mkdir build
-    - name: cmake build
-      run: cmake -Bbuild -H.
-    - name: cmake make
-      run: cmake --build build/ --target all
-    # run tests
-    - name: run test 1
-      run: build/tst/Example1_tst
-    - name: run test 2
-      run: build/tst/Example2_tst
+    - name: Checkout
+    - uses: actions/checkout@v1
+    
+    - name: Installing vcpkg (windows)
+      run: |
+        cd ..
+        git clone https://github.com/Microsoft/vcpkg.git
+        cd vcpkg
+        git checkout --force 2020.01
+        .\bootstrap-vcpkg.bat
+        .\vcpkg.exe install cppzmq:x64-windows
+    
+    - name: Running cmake (windows)
+      run: |
+        cd ${{ github.workspace }}
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}
+                  /../vcpkg/scripts/buildsystems/vcpkg.cmake

@@ -17,16 +17,13 @@ jobs:
       with:
           submodules: recursive
 
-    - name: Install dependencies
-    - run: |
-      sudo apt-get update
-      sudo apt-get install ninja-build cmake
-      ninja --version
-      make --version
-      gcc --version
+    - name: "Install dependencies"
+    - run:
+          sudo apt-get update
+          sudo apt-get install ninja-build cmake
 
     - name: Running cmake (windows)
-      run: |
+      run: 
         cd ${{ github.workspace }}
         mkdir build
         cd build

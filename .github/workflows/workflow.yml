@@ -17,4 +17,4 @@ jobs:
     - name: cmake build
       run: cmake -Bbuild -H.
     - name: cmake make
-      run: cmake --build build/ --target all
+      run: cmake --build build --config Debug / --target all

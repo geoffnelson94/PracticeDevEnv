@@ -10,6 +10,11 @@ FetchContent_Declare(
   # Specify the commit you depend on and update it regularly.
   URL https://github.com/google/googletest/archive/e2239ee6043f73722e7aa812a459f54a28552929.zip
 )
+FetchContent_GetProperties(googletest)
+if (NOT googletest_POPULATED)
+  FetchContent_Populate(googletest)
+  add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BUILD_DIR})
+endif()
 
 add_executable(main src/main.cpp)
 

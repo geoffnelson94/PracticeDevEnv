@@ -7,23 +7,21 @@ on:
   pull_request: {}
 
 jobs:
-  Windows:
-    name: build-windows
+  build:
+    name: test-ubuntu
     runs-on: [ubuntu-latest]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-          submodules: recursive
-
-    - name: "Install dependencies"
-    - run: |
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Install dependencies
+        run: |
           sudo apt-get update
           sudo apt-get install ninja-build cmake
 
-    - name: Running cmake (windows)
-    - run: |
+      - name: Running cmake 
+        run: |
           cd ${{ github.workspace }}
           mkdir build
           cd build

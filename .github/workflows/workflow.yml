@@ -1,19 +1,22 @@
-name: build and run tests
+name: CI
+# Workflow file for windows
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
+  pull_request: {}
 
 jobs:
-  build:
-    name: "Windows Latest GCC"
-    runs-on: "windows-latest"
-    
+  Windows:
+    name: build-windows
+    runs-on: [self-hosted, windows]
+
     steps:
     - name: Checkout
-    - uses: actions/checkout@v1
-    
+      uses: actions/checkout@v1
+      with:
+          submodules: recursive
+
     - name: Installing vcpkg (windows)
       run: |
         cd ..
@@ -22,7 +25,7 @@ jobs:
         git checkout --force 2020.01
         .\bootstrap-vcpkg.bat
         .\vcpkg.exe install cppzmq:x64-windows
-    
+
     - name: Running cmake (windows)
       run: |
         cd ${{ github.workspace }}

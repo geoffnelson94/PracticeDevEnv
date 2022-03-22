@@ -32,4 +32,4 @@ target_link_libraries(
   gtest_main
 )
 
-add_test(NAME example_test COMMAND HelloTest)
+gtest_discover_tests(hello_test)

@@ -18,6 +18,3 @@ jobs:
       run: cmake -Bbuild -H.
     - name: cmake make
       run: cmake --build build/ --target all
-    - name: make
-      run: make
-  

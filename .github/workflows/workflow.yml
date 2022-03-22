@@ -18,3 +18,5 @@ jobs:
       run: cmake -Bbuild -H.
     - name: cmake make
       run: cmake --build build/ --target all
+    - name: run tests
+      run: ./hello_test

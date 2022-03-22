@@ -19,4 +19,4 @@ jobs:
     - name: cmake make
       run: cmake --build build/ --target all
     - name: run tests
-      run: ./hello_test
+      run: ./build/hello_test
